@@ -11,6 +11,7 @@ data:
             auto_offset_reset => "latest"
             topics=>["pod_logs"]
             codec => "json"
+            client_id => "${CLIENT_ID}"
             group_id => "pod"
         }
     }
@@ -27,7 +28,7 @@ data:
         data_stream_dataset => "pod"
         data_stream_namespace => "elk"
         user => "elastic"
-        password => "2zg5q6AU7xW5jY649yuEpZ47"
+        password => "P6w10u2CY31225PJvLTmOb4E"
         ssl_enabled => "true"
         ssl_verification_mode => "none"
       }

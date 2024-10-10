@@ -7,7 +7,7 @@ data:
   KAFKA_CLUSTERS_0_NAME: "kafka-cluster"
   KAFKA_CLUSTERS_0_BOOTSTRAPSERVERS: "my-cluster-kafka-brokers.kafka.svc:9092"
   AUTH_TYPE: "DISABLED"
-  MANAGEMENT_HEALTH_LDAP_ENABLED: "FALSE" 
+  MANAGEMENT_HEALTH_LDAP_ENABLED: "FALSE"
 ---
 apiVersion: traefik.containo.us/v1alpha1
 kind: IngressRoute
@@ -16,11 +16,12 @@ metadata:
   namespace: kafka
 spec:
   entryPoints:
-  - web
+    - web
   routes:
-  - match: Host(`kafka-ui.local.com`) 
-    kind: Rule
-    services:
-      - name: kafka-ui # 与svc的name一致
-        port: 80       # 与svc的port一致
+    - match: Host(`kafka-ui.local.com`)
+      kind: Rule
+      services:
+        - name: kafka-ui # 与svc的name一致
+          port: 80 # 与svc的port一致
 # helm install kafka-ui kafka-ui/kafka-ui -n kafka --set existingConfigMap="kafka-ui-helm-values"
+

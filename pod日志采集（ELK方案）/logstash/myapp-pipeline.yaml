@@ -11,6 +11,7 @@ data:
             auto_offset_reset => "latest"
             topics=>["pod_logs"]
             codec => "json"
+            client_id => "${CLIENT_ID}"
             group_id => "myapp"
         }
     }
@@ -33,6 +34,21 @@ data:
           database => "/etc/logstash/GeoLite2-City.mmdb"
           ecs_compatibility => disabled
         }
+         date {
+    match => ["time_start", "ISO8601"]
+    target => "time_start"
+       }
+
+      date {
+    match => ["time_finish", "ISO8601"]
+    target => "time_finish"
+      }
+
+    ruby {
+    code => "
+      event.set('request_time', (event.get('time_finish').to_f - event.get('time_start').to_f))
+    "
+       }
         mutate {
           remove_field => ["agent","event","ecs","host","[kubernetes][labels]","input","log","orchestrator","stream","content"]
         }
@@ -49,7 +65,7 @@ data:
         data_stream_dataset => "myapp"
         data_stream_namespace => "elk"
         user => "elastic"
-        password => "2zg5q6AU7xW5jY649yuEpZ47"
+        password => "P6w10u2CY31225PJvLTmOb4E"
         ssl_enabled => "true"
         ssl_verification_mode => "none"
       }

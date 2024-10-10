@@ -13,9 +13,10 @@ spec:
         app: log-demo
     spec:
       containers:
-      - name: log-demo
-        image: harbor.local.com/app/log_demo:1.0
-        resources:
-          limits:
-            memory: "256Mi"
-            cpu: "500m"
+        - name: log-demo
+          image: 10.7.20.12:5000/app/log_demo:1.0
+          resources:
+            limits:
+              memory: "256Mi"
+              cpu: "500m"
+

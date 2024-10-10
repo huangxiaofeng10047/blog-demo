@@ -18,8 +18,8 @@ spec:
       dnsPolicy: ClusterFirstWithHostNet
       containers:
         - name: filebeat
-          image: harbor.local.com/elk/filebeat:8.9.1
-          args: ["-c","/etc/filebeat/filebeat.yml","-e"]
+          image: 10.7.20.12:5000/elastic/filebeat:8.9.1
+          args: ["-c", "/etc/filebeat/filebeat.yml", "-e"]
           env:
             # - name: ELASTICSEARCH_HOST
             #   value: "172.10.20.10"
